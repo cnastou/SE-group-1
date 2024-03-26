@@ -1,10 +1,11 @@
 var sql = require("mysql2");
+const config = require("./config");
 function connectToDatabase() {
     var connection = sql.createConnection({
-        host: "localhost",
-        user: "root",
-        database:"SHOP",
-        password: "098plmokN"
+        host: config.db.host,
+        user: config.db.user,
+        database: config.db.database,
+        password: config.db.password
     });
     return connection;
 }
