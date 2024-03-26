@@ -19,7 +19,6 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       const user = JSON.parse(body);
       // Insert user registration logic here
-      // Similar to member registration logic from the provided example
     });
   } 
   // Endpoint for submitting a ticket
@@ -57,7 +56,6 @@ const server = http.createServer((req, res) => {
 
 db.serialize(() => {
   // Check if the 'users' and 'tickets' tables exist; create them if not
-  // Similar to the members table check in the provided example
 });
 
 server.listen(3000, () => {
