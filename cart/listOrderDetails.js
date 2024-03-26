@@ -1,5 +1,4 @@
 /*get order details belonging to one order
-(products ordered, order date, price, payment info)
 GET order/details
 format:
 {

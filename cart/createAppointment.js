@@ -23,31 +23,31 @@ function createAppointment(request,response) {
     request.on('data', function(data){
         prebody+=data;
         body = JSON.parse(prebody);
-      for (i in body) {
-        if (body[i] instanceof Object) {
-            if(verify("member",body[i].memberID) & verify("date",body[i].time) &verify("specification",body[i].specification))  {
-        
-            sqlStatement = "INSERT INTO appointments(memberID, appointmentTime, specification)";
-    sqlStatement+= "VALUES ('"+body[i].memberID+"','"+body[i].time+"','"+body[i].specification+"');";
-            console.log(sqlStatement);
-    dBCon.query(sqlStatement, function (err, result) {
-        if (err) {
-            console.log("error");
-          response.writeHead(resMsg.code=400, resMsg.hdrs);
-          }else{
-          response.writeHead(resMsg.code=201, resMsg.hdrs); 
-        }  
-        setHeader(resMsg);
-        response.end(resMsg.body);
-        dBCon.end();
-        return resMsg.body;
-      }); } else {
-        response.writeHead(resMsg.code=400, resMsg.hdrs);
-        setHeader(resMsg);
-        response.end(resMsg.body);
-        dBCon.end();
-      }
-        }}
+        for (i in body) {
+          if (body[i] instanceof Object) {
+              if(verify("member",body[i].memberID) & verify("date",body[i].time) &verify("specification",body[i].specification))  {
+          
+              sqlStatement = "INSERT INTO appointments(memberID, appointmentTime, specification)";
+              sqlStatement+= "VALUES ('"+body[i].memberID+"','"+body[i].time+"','"+body[i].specification+"');";
+              console.log(sqlStatement);
+              dBCon.query(sqlStatement, function (err, result) {
+                  if (err) {
+                      console.log("error");
+                    response.writeHead(resMsg.code=400, resMsg.hdrs);
+                    }else{
+                    response.writeHead(resMsg.code=201, resMsg.hdrs); 
+                  }  
+                  setHeader(resMsg);
+                  response.end(resMsg.body);
+                  dBCon.end();
+                  return resMsg.body;
+                }); } else {
+                  response.writeHead(resMsg.code=400, resMsg.hdrs);
+                  setHeader(resMsg);
+                  response.end(resMsg.body);
+                  dBCon.end();
+                }
+          }}
     })
 }
 

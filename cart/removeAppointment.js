@@ -24,30 +24,30 @@ function removeAppointment(request,response) {
     request.on('data', function(data){
         prebody+=data;
         body = JSON.parse(prebody);
-      for (i in body) {
-        if (body[i] instanceof Object) {
-            if(verify("member",body[i].memberID) & verify("date",body[i].time))  {
-        
-            sqlStatement = "UPDATE appointments SET specification = 'Canceled' WHERE memberID ='"+body[i].memberID+"';";
-     console.log(sqlStatement);
-    dBCon.query(sqlStatement, function (err, result) {
-        if (err) {
-            console.log("error");
-          response.writeHead(resMsg.code=400, resMsg.hdrs);
-          }else{
-          response.writeHead(resMsg.code=201, resMsg.hdrs); 
-        }  
-        setHeader(resMsg);
-        response.end(resMsg.body);
-        dBCon.end();
-        return resMsg.body;
-      }); } else {
-        response.writeHead(resMsg.code=400, resMsg.hdrs);
-        setHeader(resMsg);
-        response.end(resMsg.body);
-        dBCon.end();
-      }
-        }}
+        for (i in body) {
+          if (body[i] instanceof Object) {
+              if(verify("member",body[i].memberID) & verify("date",body[i].time))  {
+          
+              sqlStatement = "UPDATE appointments SET specification = 'Canceled' WHERE memberID ='"+body[i].memberID+"';";
+              console.log(sqlStatement);
+              dBCon.query(sqlStatement, function (err, result) {
+                  if (err) {
+                      console.log("error");
+                    response.writeHead(resMsg.code=400, resMsg.hdrs);
+                    }else{
+                    response.writeHead(resMsg.code=201, resMsg.hdrs); 
+                  }  
+                  setHeader(resMsg);
+                  response.end(resMsg.body);
+                  dBCon.end();
+                  return resMsg.body;
+                }); } else {
+                  response.writeHead(resMsg.code=400, resMsg.hdrs);
+                  setHeader(resMsg);
+                  response.end(resMsg.body);
+                  dBCon.end();
+                }
+          }}
     })
 }
 
